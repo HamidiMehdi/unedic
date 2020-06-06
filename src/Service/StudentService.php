@@ -29,4 +29,10 @@ class StudentService
         return $this->em->getRepository(Student::class)->findAll();
     }
 
+    public function save(Student $student)
+    {
+        $this->em->persist($student);
+        $this->em->flush();
+    }
+
 }

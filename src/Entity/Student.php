@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\StudentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=StudentRepository::class)
@@ -20,16 +21,31 @@ class Student
 
     /**
      * @ORM\Column(name="first_name", type="string", length=25)
+     * @Assert\NotBlank(message="Le prénom ne peut pas être vide.")
+     * @Assert\Length(
+     *      max = 25,
+     *      maxMessage = "Le prénom ne peut pas dépasser 25 caractères."
+     * )
      */
     private $firstname;
 
     /**
      * @ORM\Column(name="last_name", type="string", length=25)
+     * @Assert\NotBlank(message="Le nom ne peut pas être vide.")
+     * @Assert\Length(
+     *      max = 25,
+     *      maxMessage = "Le nom ne peut pas dépasser 25 caractères."
+     * )
      */
     private $lastname;
 
     /**
-     * @ORM\Column(name="num_etud", type="string", length=10)
+     * @ORM\Column(name="num_etud", type="integer")
+     * @Assert\NotBlank(message="Le numéro étudiant ne peut pas être vide.")
+     * @Assert\Regex(
+     *     pattern="/^[0-9]{10}$/",
+     *     message="Le numéro étudiant doit contenir 10 chiffres."
+     * )
      */
     private $numetud;
 
