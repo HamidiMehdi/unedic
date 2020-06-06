@@ -48,4 +48,30 @@ class StudentController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/{id}/edit", name="student_edit")
+     * @param Request $request
+     * @param StudentService $studentService
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function edit(Request $request, StudentService $studentService, $id)
+    {
+        $student = $this->getDoctrine()->getRepository(Student::class)->find($id);
+        if (!$student) {
+            throw $this->createNotFoundException('Unable to find this entity.');
+        }
+
+        $form = $this->createForm(StudentType::class, $student);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $studentService->save($student);
+            return $this->redirectToRoute('student_list');
+        }
+
+        return $this->render('student/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }
