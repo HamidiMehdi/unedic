@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des étudiants{% endblock %}
+
+{% block body %}
+
+    <h1>Liste des étudiants</h1>
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Numéro étudiant</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for student in students %}
+            <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.lastname }}</td>
+                <td>{{ student.firstname }}</td>
+                <td>{{ student.numetud }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
