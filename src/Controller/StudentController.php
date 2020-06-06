@@ -43,6 +43,8 @@ class StudentController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $studentService->save($student);
+            $this->addFlash('success', 'Le nouvel étudiant a bien été crée.');
+
             return $this->redirectToRoute('student_list');
         }
 
@@ -70,6 +72,8 @@ class StudentController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $studentService->save($student);
+            $this->addFlash('success', 'L\'étudiant a bien été modifié.');
+
             return $this->redirectToRoute('student_list');
         }
 
@@ -92,6 +96,8 @@ class StudentController extends AbstractController
         }
 
         $studentService->delete($student);
+        $this->addFlash('success', 'L\'étudiant a bien été supprimé.');
+
         return $this->redirectToRoute('student_list');
     }
 }

@@ -4,8 +4,14 @@
 
 {% block body %}
 
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <h1>Liste des étudiants</h1>
-    <table>
+    <table class="table table-striped">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -18,16 +24,16 @@
         <tbody>
         {% for student in students %}
             <tr>
-                <td>{{ student.id }}</td>
+                <th scope="row">{{ student.id }}</th>
                 <td>{{ student.lastname }}</td>
                 <td>{{ student.firstname }}</td>
                 <td>{{ student.numetud }}</td>
                 <td>
                     <a href="{{ path('student_edit', {id: student.id}) }}">
-                        <button>Modifier</button>
+                        <button class="btn btn-primary">Modifier</button>
                     </a>
                     <a href="{{ path('student_delete', {id: student.id}) }}">
-                        <button>Supprimer</button>
+                        <button class="btn btn-danger">Supprimer</button>
                     </a>
                 </td>
             </tr>
@@ -37,6 +43,10 @@
             </tr>
         {% endfor %}
         </tbody>
+    </table>
+    <table>
+
+
     </table>
 
 {% endblock %}

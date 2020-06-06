@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Unedic | {% block title %}{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        <ul>
-            <li>
-                <a href="{{ path('student_list') }}">
-                    Liste des étudiants
-                </a>
+<head>
+    <meta charset="UTF-8">
+    <title>Unedic | {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap.min.css') }}">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 20px;">
+    <a class="navbar-brand" href="#">Unedic</a>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('student_list') }}">Liste étudiants</a>
             </li>
-            <li>
-                <a href="{{ path('student_new') }}">
-                    Créer un étudiant
-                </a>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('student_new') }}">Nouvel étudiant</a>
             </li>
         </ul>
+    </div>
+</nav>
 
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
+{% block javascripts %}{% endblock %}
+</body>
 </html>
