@@ -18,6 +18,7 @@
             <th scope="col">Nom</th>
             <th scope="col">Prénom</th>
             <th scope="col">Numéro étudiant</th>
+            <th scope="col">Départment</th>
             <th scope="col">Action</th>
         </tr>
         </thead>
@@ -28,6 +29,7 @@
                 <td>{{ student.lastname }}</td>
                 <td>{{ student.firstname }}</td>
                 <td>{{ student.numetud }}</td>
+                <td>{{ student.department.name }}</td>
                 <td>
                     <a href="{{ path('student_edit', {id: student.id}) }}">
                         <button class="btn btn-primary">Modifier</button>
@@ -39,7 +41,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">Aucun résultat</td>
+                <td colspan="6">Aucun résultat</td>
             </tr>
         {% endfor %}
         </tbody>

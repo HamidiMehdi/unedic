@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des départements{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <h1>Liste des départements</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Capacité</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for department in departments %}
+            <tr>
+                <th scope="row">{{ department.id }}</th>
+                <td>{{ department.name }}</td>
+                <td>{{ department.capacity }}</td>
+                <td>
+                    <a href="{{ path('department_edit', {id: department.id}) }}">
+                        <button class="btn btn-primary">Modifier</button>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <table>
+
+
+    </table>
+
+{% endblock %}

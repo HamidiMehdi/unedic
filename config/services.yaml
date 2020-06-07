@@ -29,3 +29,7 @@ services:
     unedic.student.service:
         class: App\Service\StudentService
         public: true
+
+    unedic.department.service:
+        class: App\Service\DepartmentService
+        public: true

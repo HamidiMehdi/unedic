@@ -49,6 +49,12 @@ class Student
      */
     private $numetud;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Department", inversedBy="students")
+     * @ORM\JoinColumn(name="department_id", nullable=false)
+     */
+    private $department;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +92,18 @@ class Student
     public function setNumetud(string $numetud): self
     {
         $this->numetud = $numetud;
+
+        return $this;
+    }
+
+    public function getDepartment(): ?Department
+    {
+        return $this->department;
+    }
+
+    public function setDepartment(?Department $department): self
+    {
+        $this->department = $department;
 
         return $this;
     }
