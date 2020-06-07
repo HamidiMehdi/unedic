@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\StudentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -16,11 +17,13 @@ class Student
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("get:read")
      */
     private $id;
 
     /**
      * @ORM\Column(name="first_name", type="string", length=25)
+     * @Groups("get:read")
      * @Assert\NotBlank(message="Le prénom ne peut pas être vide.")
      * @Assert\Length(
      *      max = 25,
@@ -31,6 +34,7 @@ class Student
 
     /**
      * @ORM\Column(name="last_name", type="string", length=25)
+     * @Groups("get:read")
      * @Assert\NotBlank(message="Le nom ne peut pas être vide.")
      * @Assert\Length(
      *      max = 25,
@@ -41,6 +45,7 @@ class Student
 
     /**
      * @ORM\Column(name="num_etud", type="integer")
+     * @Groups("get:read")
      * @Assert\NotBlank(message="Le numéro étudiant ne peut pas être vide.")
      * @Assert\Regex(
      *     pattern="/^[0-9]{10}$/",
